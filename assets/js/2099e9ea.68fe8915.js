@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkreact_khatra_placeholder_docs=self.webpackChunkreact_khatra_placeholder_docs||[]).push([[260],{5745:e=>{e.exports=JSON.parse('{"name":"docusaurus-plugin-content-pages","id":"default"}')}}]);
