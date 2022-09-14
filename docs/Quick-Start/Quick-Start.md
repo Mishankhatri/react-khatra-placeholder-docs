@@ -2,19 +2,44 @@
 sidebar_position: 2
 ---
 
-import { PCardContainer,PCard, PBlock, PInLineContainer, PLine } from "react-khatra-placeholder";
+import { KhatraPlaceholder,PCardContainer,PCard, PBlock, PInLineContainer, PLine } from "react-khatra-placeholder";
 
-import ThemeProvider from "../Demo/\_demoComponents/ThemeProvider";
 import ToggleTheme from "../Demo/\_demoComponents/ToggleTheme";
 
 # Quick Start
 
 ## After installation
 
-<p> Import necessary components from the react-khatra-placeholder.</p>
+Import KhatraPlaceholder component from the react-khatra-placeholder.
+
+```jsx
+import { KhatraPlaceholder } from "react-khatra-placeholder";
+```
+
+```jsx
+export const YourContentPage = () => {
+  // your content loading logic.
+  const [isLoading, setIsLoading] = useState(false);
+  return (
+    <>
+      <KhatraPlaceholder
+        isLoading={isLoading}
+        type={"ParagraphPlaceholder"}
+        delay={300}
+        animateWave
+      >
+        <div>Your Beautiful content.</div>
+      </KhatraPlaceholder>
+    </>
+  );
+};
+```
+
+For Creating CustomPlaceholders import necessary components from the react-khatra-placeholder.
 
 ```jsx
 import {
+  KhatraPlaceholder,
   PCardContainer,
   PCard,
   PBlock,
@@ -23,35 +48,8 @@ import {
 } from "react-khatra-placeholder";
 ```
 
-## Create Your First Placeholder
-
-<ThemeProvider>
-  <PCardContainer>
-    <PCard w="400px" h="400px" animateWave>
-      <PBlock h="50%" br="8px" />
-      <PInLineContainer gap="0" br="3px">
-        <PLine h="0.8rem" />
-        <PLine w="70%" h="0.8rem" />
-        <PLine w="80%" h="0.8rem" />
-      </PInLineContainer>
-      <PBlock w="30%" h="2rem" br="3px" />
-    </PCard>
-  </PCardContainer>
-<ToggleTheme/>
-</ThemeProvider>
-
-<br/>
-
 ```jsx
-import {
-  PCardContainer,
-  PCard,
-  PBlock,
-  PInlineContainer,
-  PLine,
-} from "react-khatra-placeholder";
-
-export const YourFirstPlaceholder = () => {
+const CustomPlaceholder = () => {
   return (
     <>
       {/* to hold more than one PCard. */}
@@ -69,6 +67,23 @@ export const YourFirstPlaceholder = () => {
           <PBlock w="30%" h="2rem" br="3px" />
         </PCard>
       </PCardContainer>
+    </>
+  );
+};
+
+export const YourContentPage = () => {
+  // your content loading logic.
+  const [isLoading, setIsLoading] = useState(false);
+  return (
+    <>
+      <KhatraPlaceholder
+        isLoading={isLoading}
+        customPlaceholder={<CustomPlaceholder />}
+        delay={300}
+        animateWave
+      >
+        <div>Your Beautiful content.</div>
+      </KhatraPlaceholder>
     </>
   );
 };

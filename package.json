@@ -1,8 +1,16 @@
 {
   "homepage": "https://mishankhatri.github.io/react-khatra-placeholder-docs",
   "name": "react-khatra-placeholder-docs",
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.0.3",
+  "license": "MIT",
+  "private": false,
+  "author": "Mishan Khatri <mishankhatri490@gmail.com> (https://mishankhatri.com.np)",
+  "keywords": [
+    "react-khatra-placeholder",
+    "react component library",
+    "placeholder",
+    "skeleton placeholder"
+  ],
   "scripts": {
     "docusaurus": "docusaurus",
     "predeploy": "npm run build",
@@ -23,7 +31,7 @@
     "prism-react-renderer": "^1.3.5",
     "react": "^18.2.0",
     "react-dom": "^17.0.2",
-    "react-khatra-placeholder": "^1.0.1"
+    "react-khatra-placeholder": "^1.0.3"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.1.0",

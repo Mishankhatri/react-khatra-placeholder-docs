@@ -3,24 +3,103 @@ sidebar_position: 3
 ---
 
 import {
+  KhatraPlaceholder,
   PCard,
   PBlock,
   PInLineContainer,
   PLine,
+  PThemeProvider,
 } from "react-khatra-placeholder";
-import ThemeProvider from "./_demoComponents/ThemeProvider";
+
 import ToggleTheme from "./_demoComponents/ToggleTheme";
+import YourContentPage from "./_demoComponents/YourContentPage";
 
 # Demo
 
-## All demo cards
+## `Placeholder with loading state`
+
+Import necessary components from the react-khatra-placeholder.
+
+```jsx
+import {
+  KhatraPlaceholder,
+  PCard,
+  PBlock,
+  PInlineContainer,
+  PLine,
+} from "react-khatra-placeholder";
+```
+
+### Example
+
+<YourContentPage />
+
+```jsx
+const CustomPlaceholder = ({ animateWave, animateGlow }) => {
+  return (
+    <>
+      {/* base component of placeholder, control animation of placeholder from here.*/}
+      <PCard
+        w="100%"
+        animateWave={animateWave}
+        animateGlow={animateGlow}
+        style={{ padding: "1rem", border: "1px solid brown" }}
+      >
+        {/* creates rectangular block of given height and border radius.*/}
+        <PBlock h="24px" w="35%" br="3px" style={{ marginBottom: "0.5rem" }} />
+        {/* base component for creating paragraph lines.*/}
+        <PInLineContainer br="3px" h="80%" w="98%">
+          <PLine h="0.8rem" /> {/* creates lines, just like in paragraphs.*/}
+          <PLine h="0.8rem" />
+          <PLine h="0.8rem" w="60%" />
+        </PInLineContainer>
+      </PCard>
+    </>
+  );
+};
+
+const ToggleLoading = ({ isLoading, setIsLoading }) => {
+  return (
+    <button
+      className="button button--primary"
+      style={btnStyle}
+      onClick={() => setIsLoading(!isLoading)}
+    >
+      Toggle Loading
+    </button>
+  );
+};
+
+export const YourContentPage = () => {
+  // your content loading logic.
+  const [isLoading, setIsLoading] = useState(false);
+  return (
+      <KhatraPlaceholder
+        isLoading={isLoading}
+        customPlaceholder={<CustomPlaceholder />}
+        animateWave
+      >
+        <div>Your Beautiful content.</div>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia, beatae
+          laudantium cupiditate dolorem officia officiis veritatis qui mollitia
+          nostrum voluptate similique, magnam quaerat error veniam quas omnis
+          quasi? Sint, obcaecati.
+        </div>
+      </KhatraPlaceholder>
+      <ToggleLoading isLoading={isLoading} setIsLoading={setIsLoading} />
+  );
+};
+```
+
+# Other Custom Placeholders Demo Cards
 
 ## `Profile Card`
 
-<ThemeProvider>
-<PCard w="400px" h="500px" br="12px" animateWave>
+<PThemeProvider>
+<PCard w="400px" h="500px" br="12px" animateWave style={{border:"0.5px solid grey"}}>
   <PBlock w="100%" h="150px" br="12px" align="center" />
-  <PInLineContainer align="center">
+  <PInLineContainer justify="center">
     <PBlock
       w="100px"
       h="100px"
@@ -37,12 +116,12 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
     <PBlock w="60%" h="0.8rem" align="center" />
     <PBlock w="60%" h="0.8rem" align="center" />
   </PInLineContainer>
-  <PInLineContainer align="center">
+  <PInLineContainer justify="center">
     <PBlock w="40%" h="2rem" />
     <PBlock w="40%" h="2rem" />
     <PBlock w="10%" h="2rem" />
   </PInLineContainer>
-  <PInLineContainer gap="0.8rem" align="center">
+  <PInLineContainer gap="0.8rem" justify="center">
     <PLine w="20%" h="100px" />
     <PLine w="20%" h="100px" />
     <PLine w="20%" h="100px" />
@@ -52,9 +131,15 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
 <ToggleTheme/>
 
 ```jsx
-<PCard w="400px" h="500px" br="12px" animateWave>
+<PCard
+  w="400px"
+  h="500px"
+  br="12px"
+  animateWave
+  style={{ border: "0.5px solid grey" }}
+>
   <PBlock w="100%" h="150px" br="12px" align="center" />
-  <PInLineContainer align="center">
+  <PInLineContainer justify="center">
     <PBlock
       w="100px"
       h="100px"
@@ -71,12 +156,12 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
     <PBlock w="60%" h="0.8rem" align="center" />
     <PBlock w="60%" h="0.8rem" align="center" />
   </PInLineContainer>
-  <PInLineContainer align="center">
+  <PInLineContainer justify="center">
     <PBlock w="40%" h="2rem" />
     <PBlock w="40%" h="2rem" />
     <PBlock w="10%" h="2rem" />
   </PInLineContainer>
-  <PInLineContainer gap="0.8rem" align="center">
+  <PInLineContainer gap="0.8rem" justify="center">
     <PLine w="20%" h="100px" />
     <PLine w="20%" h="100px" />
     <PLine w="20%" h="100px" />
@@ -87,13 +172,13 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
 
 ## `Product Card`
 
-<PCard w="320px" h="400px" animateWave>
+<PCard w="320px" h="400px" animateWave style={{ border: "0.5px solid grey" }}>
   <PBlock h="50%" br="12px" />
-  <PInLineContainer align="space-between" style={{ padding: "0.5rem 0" }}>
+  <PInLineContainer justify="space-between" style={{ padding: "0.5rem 0" }}>
     <PBlock w="30%" h="1.5rem" />
     <PBlock w="20%" h="1.5rem" />
   </PInLineContainer>
-  <PInLineContainer gap="0" br="3px">
+  <PInLineContainer br="3px">
     <PLine h="0.8rem" />
     <PLine w="70%" h="0.8rem" />
     <PLine w="80%" h="0.8rem" />
@@ -103,9 +188,9 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
 <ToggleTheme />
 
 ```jsx
-<PCard w="320px" h="400px" animateWave>
+<PCard w="320px" h="400px" animateWave style={{ border: "0.5px solid grey" }}>
   <PBlock h="50%" br="12px" />
-  <PInLineContainer align="space-between" style={{ padding: "0.5rem 0" }}>
+  <PInLineContainer justify="space-between" style={{ padding: "0.5rem 0" }}>
     <PBlock w="30%" h="1.5rem" />
     <PBlock w="20%" h="1.5rem" />
   </PInLineContainer>
@@ -120,7 +205,7 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
 
 ## `List Card`
 
-<PCard w="400px" h="400px" animateWave>
+<PCard w="400px" h="400px" animateWave style={{ border: "0.5px solid grey" }}>
   <PInLineContainer gap="1rem">
     <PBlock w="80px" h="80px" br="12px" />
     <PInLineContainer w="60%" style={{ marginTop: "0.5rem" }}>
@@ -187,8 +272,8 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
 
 ## `Mobile View`
 
-<PCard w="400px" h="720px" animateGlow>
-  <PInLineContainer align="space-between" style={{marginBottom:"1rem"}}>
+<PCard w="400px" h="720px" animateGlow style={{border:"0.5px solid grey"}}>
+  <PInLineContainer justify="space-between" style={{marginBottom:"1rem"}}>
     <PBlock w="40%" h="2rem" />
     <PInLineContainer w="20%">
       <PBlock w="2rem" h="2rem" rounded />
@@ -196,7 +281,7 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
     </PInLineContainer>
   </PInLineContainer>
 
-<PInLineContainer align="space-between" style={{ marginBottom: "1rem" }}>
+<PInLineContainer justify="space-between" style={{ marginBottom: "1rem" }}>
   <PBlock w="4rem" h="2rem" />
   <PBlock w="4rem" h="2rem" />
   <PBlock w="4rem" h="2rem" />
@@ -220,8 +305,8 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
     <PBlock w="2rem" h="2rem" rounded />
     <PInLineContainer w="50%">
       <PLine w="60%" h="0.8rem" br="3px"/>
-      <PLine w="40%" h="0.5rem" br="3px" style={{marginTop:"-1rem"}}/>
-      <PBlock w="0.5rem" h="0.5rem" rounded  style={{marginTop:"-1rem"}} />
+      <PLine w="40%" h="0.5rem" br="3px" />
+      <PBlock w="0.5rem" h="0.5rem" rounded  />
     </PInLineContainer>
     <PBlock h="300px" />
   </PInLineContainer>
@@ -229,8 +314,8 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
 <ToggleTheme/>
 
 ```jsx
-<PCard w="400px" h="720px" animateGlow>
-  <PInLineContainer align="space-between" style={{ marginBottom: "1rem" }}>
+<PCard w="400px" h="720px" animateGlow style={{ border: "0.5px solid grey" }}>
+  <PInLineContainer justify="space-between" style={{ marginBottom: "1rem" }}>
     <PBlock w="40%" h="2rem" />
     <PInLineContainer w="20%">
       <PBlock w="2rem" h="2rem" rounded />
@@ -238,7 +323,7 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
     </PInLineContainer>
   </PInLineContainer>
 
-  <PInLineContainer align="space-between" style={{ marginBottom: "1rem" }}>
+  <PInLineContainer justify="space-between" style={{ marginBottom: "1rem" }}>
     <PBlock w="4rem" h="2rem" />
     <PBlock w="4rem" h="2rem" />
     <PBlock w="4rem" h="2rem" />
@@ -262,8 +347,8 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
     <PBlock w="2rem" h="2rem" rounded />
     <PInLineContainer w="50%">
       <PLine w="60%" h="0.8rem" br="3px" />
-      <PLine w="40%" h="0.5rem" br="3px" style={{ marginTop: "-1rem" }} />
-      <PBlock w="0.5rem" h="0.5rem" rounded style={{ marginTop: "-1rem" }} />
+      <PLine w="40%" h="0.5rem" br="3px" />
+      <PBlock w="0.5rem" h="0.5rem" rounded />
     </PInLineContainer>
     <PBlock h="300px" />
   </PInLineContainer>
@@ -272,9 +357,15 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
 
 ## `Details Card`
 
-<PCard w="800px" h="400px" gap="1rem" animateGlow>
+<PCard
+  w="800px"
+  h="400px"
+  gap="1rem"
+  animateGlow
+  style={{ border: "0.5px solid grey" }}
+>
   <PBlock h="100%" br="12px" />
-  <PInLineContainer align="space-between">
+  <PInLineContainer justify="space-between">
     <PBlock w="50%" h="3rem" />
     <PInLineContainer w="30%">
       <PBlock w="3rem" h="3rem" rounded />
@@ -294,7 +385,7 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
 ```jsx
 <PCard w="800px" h="400px" gap="1rem" animateGlow>
   <PBlock h="100%" br="12px" />
-  <PInLineContainer align="space-between">
+  <PInLineContainer justify="space-between">
     <PBlock w="50%" h="3rem" />
     <PInLineContainer w="30%">
       <PBlock w="3rem" h="3rem" rounded />
@@ -313,9 +404,10 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
 
 ## `Description Card`
 
-<PCard w="400px" h="400px" animateGlow>
+<PCard w="400px" h="400px" animateGlow style={{ border: "0.5px solid grey" }}>
   <PBlock h="50%" br="8px" />
-  <PInLineContainer gap="0.1rem" br="3px">
+  <PInLineContainer gap="1rem" br="3px">
+    <PLine h="0.8rem" />
     <PLine h="0.8rem" />
     <PLine w="70%" h="0.8rem" />
     <PLine w="80%" h="0.8rem" />
@@ -327,7 +419,8 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
 ```jsx
 <PCard w="400px" h="400px" animateGlow>
   <PBlock h="50%" br="8px" />
-  <PInLineContainer gap="0.1rem" br="3px">
+  <PInLineContainer br="3px">
+    <PLine h="0.8rem" />
     <PLine h="0.8rem" />
     <PLine w="70%" h="0.8rem" />
     <PLine w="80%" h="0.8rem" />
@@ -336,4 +429,4 @@ import ToggleTheme from "./_demoComponents/ToggleTheme";
 </PCard>
 ```
 
-</ThemeProvider>
+</PThemeProvider>
